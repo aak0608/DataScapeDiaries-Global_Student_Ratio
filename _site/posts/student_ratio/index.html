@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aishwarya Anil Kumar">
+<meta name="dcterms.date" content="2022-08-27">
+
+<title>DataScapeDiaries - Are teachers in Africa overburdened?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">DataScapeDiaries</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ETC5523-2023/blog-aani0005"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Are teachers in Africa overburdened?</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Analysis</div>
+                <div class="quarto-category">Shiny</div>
+                <div class="quarto-category">EDA</div>
+                <div class="quarto-category">Data Visualization</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aishwarya Anil Kumar </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 27, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<details open="">
+<summary>
+Introduction
+</summary>
+<p><br></p>
+<p>In the vast landscape of global education, numbers play a significant role in painting a picture. However, there are specific numbers that stand out more than others, and one such number is the student-teacher ratio. It serves as a simple yet profound metric that gauges the balance between educators and learners. But why is this ratio so vital? Dive into this blog, where I unravel the significance of student ratios and how they vary across countries and educational indicators.</p>
+<p>Also, I am trying to dig deeper in understanding about different nations, as they strive to provide quality education for their growing populations, a critical metric emerges from the backdrop - the student-teacher ratio. This ratio not only represents numerical data but reflects the pressure on educational systems and, more directly, on teachers.</p>
+</details>
+<details open="">
+<summary>
+About The Data
+</summary>
+<p><br></p>
+<section id="data-source" class="level4">
+<h4 class="anchored" data-anchor-id="data-source">Data Source :</h4>
+<p>My exploration is rooted in a comprehensive dataset from <strong><a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-05-07">github</a></strong>. This collection offers insights into the number of students per teacher in various educational institutions worldwide. I have merged this with <strong><a href="https://ourworldindata.org/grapher/continents-according-to-our-world-in-data">continent’s data</a></strong>, which paints a global picture of student-teacher ratios, with a specific spotlight on Africa.</p>
+</section>
+<section id="more-than-just-numbers" class="level4">
+<h4 class="anchored" data-anchor-id="more-than-just-numbers">More Than Just Numbers :</h4>
+<p>While it’s easy to get lost in the vastness of data, it’s essential to understand that behind every student-teacher ratio lies a narrative of classrooms. A high ratio might indicate overcrowded classrooms, where individual attention becomes a luxury and teachers constantly grapple with balancing quality with quantity. Conversely, a lower ratio could suggest a more balanced educational environment.</p>
+</section>
+<section id="the-african-context" class="level4">
+<h4 class="anchored" data-anchor-id="the-african-context">The African Context :</h4>
+<p>Through this blog, we aim to:</p>
+<ul>
+<li>Chart out the evolution of student-teacher ratios in Africa over the years, providing a clear picture of the growing demands on educators.</li>
+<li>Offer visual interpretations, making data more approachable and emphasizing disparities within the continent.</li>
+<li>Highlight countries that are facing challenges, offering a comprehensive view of the African educational landscape.</li>
+<li>Probe deeper into potential reasons and implications of these ratios, going beyond just the numbers.</li>
+</ul>
+<p>Embark on this journey with me as I navigate the educational corridors of Africa, seeking answers and understanding the intricate dance between numbers and narratives.</p>
+</section></details>
+<details>
+<summary>
+Analysis
+</summary>
+<p><br></p>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-data" class="anchored">
+
+<table class="table table-striped table-hover" style="font-size: 12px; margin-left: auto; margin-right: auto;"><caption>Table&nbsp;1:  Metadata for Global Student-Teacher Ratio Dataset </caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;color: black !important;background-color: #e3c565 !important;font-size: 12px;"> Variable </th>
+   <th style="text-align:left;color: black !important;background-color: #e3c565 !important;font-size: 12px;"> Description </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> edulit_ind </td>
+   <td style="text-align:left;"> Education Literacy Indicator Code </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> indicator </td>
+   <td style="text-align:left;"> Descriptive Indicator Name </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> country_code </td>
+   <td style="text-align:left;"> ISO Country Code </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> country </td>
+   <td style="text-align:left;"> Full Country Name </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> year </td>
+   <td style="text-align:left;"> The year for the specific data entry </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> student_ratio </td>
+   <td style="text-align:left;"> Average student-teacher ratio for that year and country </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> flag_codes </td>
+   <td style="text-align:left;"> Additional codes for flags (if any) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> flags </td>
+   <td style="text-align:left;"> Descriptive Flag Names </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Continent </td>
+   <td style="text-align:left;"> The continent to which the country belongs </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p style=" padding: 10px;">
+To analyze the dataset, it is important to understand the type of data we are dealing with. To gain more information about the dataset,it is required to delve into its metadata – the descriptors that provide context about the data’s origin, structure, and inherent attributes as shown in <a href="#tbl-data">Table&nbsp;1</a>. Metadata helps in framing our analysis and ensuring that we correctly interpret the values and patterns within the dataset. This dataset consists of 5189 observations and 9 variables.
+</p>
+<p><br></p>
+
+<section id="the-struggle-to-balance-identifying-the-overwhelmed-educators" class="level3">
+<h3 class="anchored" data-anchor-id="the-struggle-to-balance-identifying-the-overwhelmed-educators">The Struggle to Balance: Identifying the Overwhelmed Educators</h3>
+<p>When analyzing educational standards, one cannot simply overlook the student-teacher ratio. It’s a metric that resonates deeply with the quality of education provided and the experience in classrooms. A higher ratio translates to a greater number of students per teacher, potentially leading to strained resources and, unfortunately, a dilution in the quality of education.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-plot-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Top 10 countries with highest average ratio</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From the <a href="#fig-plot">Figure&nbsp;1</a> above, it becomes evident that several countries are grappling with alarmingly high student-teacher ratios. This not only implies that classrooms in these nations might be more crowded but also suggests that teachers might be overwhelmed, trying to cater to the diverse needs of a larger student body. The orange bars represent the average student ratios for countries, and it’s distressing to see several nations clocking in at numbers much higher than global benchmarks, but <span style="background-color: #FFFF00">is there a pattern here?</span></p>
+</section>
+<section id="a-global-perspective-africa-in-the-limelight" class="level3">
+<h3 class="anchored" data-anchor-id="a-global-perspective-africa-in-the-limelight">A Global Perspective: Africa in the Limelight</h3>
+<p>Visualizing data geographically has a unique way of making disparities and patterns come alive. When we chart out the student-teacher ratios on the world map, there’s a pronounced concentration of color intensity in certain regions - chiefly Africa, <span style="background-color: #FFFF00">followed by parts of Asia</span>, which hints along the same lines as the study done by <span class="citation" data-cites="one">Nesterova (<a href="#ref-one" role="doc-biblioref">2020</a>)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-plot2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-plot2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Top 10 Countries Highlighted by Average Student Ratio on world map</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <a href="#fig-plot2">Figure&nbsp;2</a> above serves as a beacon, highlighting the areas where interventions are most needed. There rises the question though, <span style="background-color: #FFFF00">does this mean all African countries are struggling or just couple of them came up in this list?</span></p>
+</section>
+<section id="africas-struggle-a-median-perspective" class="level3">
+<h3 class="anchored" data-anchor-id="africas-struggle-a-median-perspective">Africa’s Struggle: A Median Perspective</h3>
+<p>Diving into data gives us insights, but there’s a unique clarity that emerges when we distil these numbers into simpler metrics, like the median. The median provides a ‘middle-ground’, filtering out extreme outliers, and showcasing a more standardized benchmark for comparison.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-plot3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-plot3-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Median Student Ratio with Outliers by Continent</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Upon exploration it reveals that Africa has a pronouncedly higher median student-teacher ratio compared to other continents. But what does this signify? Essentially, this metric reflects that at least half of the African countries have a student-teacher ratio higher than the continent’s median value.</p>
+<p>The golden bar in the <a href="#fig-plot3">Figure&nbsp;3</a> representing Africa unmistakably stands out, emphasizing the continent’s predicament. The red dots, representing outliers, further accentuate the disparity within continents, but it’s Africa’s column that draws immediate attention <span style="background-color: #FFFF00">followed by Europe</span>.</p>
+</section>
+<section id="africas-classroom-struggle-the-student-teacher-ratio-conundrum" class="level3">
+<h3 class="anchored" data-anchor-id="africas-classroom-struggle-the-student-teacher-ratio-conundrum">Africa’s Classroom Struggle: The Student-Teacher Ratio Conundrum</h3>
+<p>In the pursuit of quality education, the balance between students and teachers is critical. Despite its vast cultural heritage, Africa grapples with this balance, as evidenced by its skewed student-teacher ratios.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-plot4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-plot4-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Top 5 Highest &amp; Lowest Student-Teacher Ratios in Africa</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The visual in the <a href="#fig-plot4">Figure&nbsp;4</a> above paints a compelling picture of the student-teacher ratios across African nations. Those with the most significant challenges are marked in stark green, indicating settings where educators are spread thin, potentially diluting the quality of education. On the flip side, the mustard yellow dots signify countries with slightly better ratios - but there’s a catch. Even <span style="background-color: #FFFF00">these relatively “better” nations fall short of the global ideal student-teacher ratio, depicted by the dashed red line</span>.</p>
+<p>Worryingly, no African country, even those with somewhat balanced ratios within the continental context, manages to dip below this universal benchmark. This revelation underscores the endemic nature of this educational challenge within Africa.</p>
+</section></details>
+<details open="">
+<summary>
+Conclusion
+</summary>
+<p><br></p>
+<p>Africa’s educational landscape, rich in potential, faces a pressing concern: the imbalance in student-teacher ratios. A high ratio can hint at classrooms bursting at the seams, potentially compromising the quality of instruction and learning based on research by <span class="citation" data-cites="mohamed2020south">Mohamed (<a href="#ref-mohamed2020south" role="doc-biblioref">2020</a>)</span> . While some countries within the continent show promise, the overarching trend suggests an urgent need for introspection and action. Addressing this imbalance is not just about improving numbers but ensuring that each student gets the attention and resources they deserve. The journey ahead is challenging, but with concerted efforts, a balanced educational environment is within reach.</p>
+</details>
+
+
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-mohamed2020south" class="csl-entry" role="doc-biblioentry">
+Mohamed, Shenilla. 2020. <span>“South Africa: Broken and Unequal Education Perpetuating Poverty and Inequality.”</span> <em>Amnesty International</em>.
+</div>
+<div id="ref-one" class="csl-entry" role="doc-biblioentry">
+Nesterova, Yulia. 2020. <span>“Education Policies, Systems, and Progress in Africa and Asia a Comparative Analysis of 12 Cities in Six Countries.”</span>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

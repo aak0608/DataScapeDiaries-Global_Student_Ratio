@@ -1,0 +1,15 @@
+---
+title: "About"
+image: about_author.jpeg
+about:
+  template: jolla
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/ETC5523-2023/blog-aani0005
+
+---
+
+Hi I am Aishwarya Anil Kumar, the author of this blog. I am a graduate student at Monash University, pursuing a degree in Business Analytics. I love spending time with data and coming up with my own interpretation of the dataset. I always find data visualization to be a powerful tool for analysis. With a background as in UI development, I find it quite intriguing that there are endless possibilities of implementing data concepts and models and create my own intuitive analysis out of it. This blog aims towards trying to understand the "Global student-teacher ratio" dataset and comment on its imbalance and other peculiar findings. 
+
+Thank you for joining me in this journey. I hope you have as much fun reading my analysis as i did exploring it.

@@ -1,0 +1,311 @@
+---
+title: "Are teachers in Africa overburdened?"
+author: "Aishwarya Anil Kumar"
+date: "2022-08-27"
+categories: [Analysis, Shiny, EDA, Data Visualization]
+image: "global_student_teacher.jpg"
+bibliography: references.bib
+css: styles.css
+---
+
+<details open>
+<summary>Introduction</summary>
+
+<br/>
+
+In the vast landscape of global education, numbers play a significant role in painting a picture. However, there are specific numbers that stand out more than others, and one such number is the student-teacher ratio. It serves as a simple yet profound metric that gauges the balance between educators and learners. But why is this ratio so vital? Dive into this blog, where I unravel the significance of student ratios and how they vary across countries and educational indicators.
+
+Also, I am trying to dig deeper in understanding about different nations, as they strive to provide quality education for their growing populations, a critical metric emerges from the backdrop - the student-teacher ratio. This ratio not only represents numerical data but reflects the pressure on educational systems and, more directly, on teachers.
+
+</details>
+
+<details open>
+<summary>About The Data</summary>
+
+<br/>
+
+
+#### Data Source : 
+My exploration is rooted in a comprehensive dataset from **[github](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-05-07)**. This collection offers insights into the number of students per teacher in various educational institutions worldwide. I have merged this with **[continent's data](https://ourworldindata.org/grapher/continents-according-to-our-world-in-data)**, which paints a global picture of student-teacher ratios, with a specific spotlight on Africa.
+
+#### More Than Just Numbers : 
+While it's easy to get lost in the vastness of data, it's essential to understand that behind every student-teacher ratio lies a narrative of classrooms. A high ratio might indicate overcrowded classrooms, where individual attention becomes a luxury and teachers constantly grapple with balancing quality with quantity. Conversely, a lower ratio could suggest a more balanced educational environment.
+
+#### The African Context : 
+Through this blog, we aim to:
+
+- Chart out the evolution of student-teacher ratios in Africa over the years, providing a clear picture of the growing demands on educators.
+- Offer visual interpretations, making data more approachable and emphasizing disparities within the continent.
+- Highlight countries that are facing challenges, offering a comprehensive view of the African educational landscape.
+- Probe deeper into potential reasons and implications of these ratios, going beyond just the numbers.
+
+Embark on this journey with me as I navigate the educational corridors of Africa, seeking answers and understanding the intricate dance between numbers and narratives.
+
+
+</details>
+
+<details>
+<summary>Analysis</summary>
+
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+library(shiny)
+library(tidyverse)
+library(here)
+library(dplyr)
+library(kableExtra)
+library(ggplot2)
+library(sf)
+library(dplyr)
+library(viridis)
+library(scales)
+library(knitr)
+```
+<br/>
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df <- read_csv(here("2019", "2019-05-07", "student_teacher_ratio.csv"))
+country <- read_csv(here("2019", "2019-05-07", "continents-according-to-our-world-in-data.csv"))
+```
+
+```{r global, echo=FALSE}
+
+df_combined <- df %>%
+  left_join(country, by = c("country_code" = "Code"))
+
+df_combined <- dplyr::select(df_combined, -c(Year, Entity))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+avg_ratios <- df_combined %>%
+  group_by(country, Continent) %>%
+  summarize(average_ratio = mean(student_ratio, na.rm = TRUE))
+
+top_countries <- avg_ratios %>%
+  arrange(-average_ratio) %>%
+  head(10)
+
+```
+```{r data,echo=FALSE}
+#| label: tbl-data
+#| tbl-cap: Metadata for Global Student-Teacher Ratio Dataset
+metadata <- data.frame(
+  Variables = c("edulit_ind", "indicator", "country_code", "country", "year", "student_ratio", "flag_codes", "flags", "Continent"),
+  Description = c("Education Literacy Indicator Code", 
+                 "Descriptive Indicator Name", 
+                 "ISO Country Code", 
+                 "Full Country Name", 
+                 "The year for the specific data entry", 
+                 "Average student-teacher ratio for that year and country", 
+                 "Additional codes for flags (if any)", 
+                 "Descriptive Flag Names", 
+                 "The continent to which the country belongs")
+)
+
+kable(metadata, col.names = c("Variable", "Description"), align = c("l", "l")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12) %>% 
+  row_spec(0, background = "#e3c565", color = "black", font_size = 12)
+
+```
+<p style=" padding: 10px;">
+    To analyze the dataset, it is important to understand the type of data we are dealing with. To gain more information about the dataset,it is required to delve into its metadata – the descriptors that provide context about the data's origin, structure, and inherent attributes as shown in @tbl-data. Metadata helps in framing our analysis and ensuring that we correctly interpret the values and patterns within the dataset. This dataset consists of `r nrow(df_combined)` observations and `r ncol(df_combined)` variables.
+</p>
+
+<br/>
+
+### The Struggle to Balance: Identifying the Overwhelmed Educators
+
+When analyzing educational standards, one cannot simply overlook the student-teacher ratio. It's a metric that resonates deeply with the quality of education provided and the experience in classrooms. A higher ratio translates to a greater number of students per teacher, potentially leading to strained resources and, unfortunately, a dilution in the quality of education.
+
+
+```{r plot, echo=FALSE, message=FALSE, warning=FALSE}
+#| label: fig-plot
+#| fig-cap: Top 10 countries with highest average ratio
+ggplot(top_countries, aes(x = reorder(country, average_ratio), y = average_ratio)) +
+  geom_bar(stat = "identity", fill = "orange", color = "black") +
+  coord_flip(ylim = c(0, 80)) +
+  labs(title = "Top 10 Countries with Highest Average Student Ratios",
+       x = "Country", 
+       y = "Average Student Ratio") +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(color = "black", size = 2),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text()
+  )
+
+
+```
+From the @fig-plot above, it becomes evident that several countries are grappling with alarmingly high student-teacher ratios. This not only implies that classrooms in these nations might be more crowded but also suggests that teachers might be overwhelmed, trying to cater to the diverse needs of a larger student body. The orange bars represent the average student ratios for countries, and it's distressing to see several nations clocking in at numbers much higher than global benchmarks, but <span style="background-color: #FFFF00">is there a pattern here?</span>
+
+
+
+### A Global Perspective: Africa in the Limelight
+
+Visualizing data geographically has a unique way of making disparities and patterns come alive. When we chart out the student-teacher ratios on the world map, there's a pronounced concentration of color intensity in certain regions - chiefly Africa, <span style="background-color: #FFFF00">followed by parts of Asia</span>, which hints along the same lines as the study done by @one.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#| label: fig-plot2
+#| fig-cap: Top 10 Countries Highlighted by Average Student Ratio on world map
+world <- st_as_sf(maps::map("world", plot = FALSE, fill = TRUE))
+
+
+world_map <- merge(world, top_countries, by.x = "ID", by.y = "country", all.x = TRUE)
+
+ggplot(data = world_map) +
+  geom_sf(aes(fill = average_ratio), color = "lightgray", size = 0.2) +
+  geom_sf_text(aes(label = ID), data = world_map[!is.na(world_map$average_ratio),], check_overlap = TRUE, color = "black") +
+  scale_fill_distiller(palette = "YlOrRd", na.value = "lightyellow",
+                       name = "Avg Student Ratio",
+                       breaks = scales::pretty_breaks(n = 10)) +
+  coord_sf(xlim = c(-195, 195), ylim = c(-85, 90)) +
+  labs(title = "Top 10 Countries Highlighted by Average Student Ratio") +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_blank(),
+    legend.position = "right",
+    legend.title = element_text(face = "bold"),
+    legend.text = element_text(hjust = 0.5),
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.background = element_rect(colour = "black", size = 2),
+    plot.margin = margin(0.25, 0.25, 0.25, 0.25, "cm")
+  )
+
+
+```
+The @fig-plot2 above serves as a beacon, highlighting the areas where interventions are most needed. There rises the question though, <span style="background-color: #FFFF00">does this mean all African countries are struggling or just couple of them came up in this list?</span>
+
+
+### Africa's Struggle: A Median Perspective
+
+Diving into data gives us insights, but there's a unique clarity that emerges when we distil these numbers into simpler metrics, like the median. The median provides a 'middle-ground', filtering out extreme outliers, and showcasing a more standardized benchmark for comparison.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#| label: fig-plot3
+#| fig-cap: Median Student Ratio with Outliers by Continent
+data_summary <- df_combined %>%
+  group_by(Continent) %>%
+  summarise(
+    median_value = median(student_ratio, na.rm = TRUE),
+    lower_bound = quantile(student_ratio, 0.25, na.rm = TRUE) - 1.5 * IQR(student_ratio, na.rm = TRUE),
+    upper_bound = quantile(student_ratio, 0.75, na.rm = TRUE) + 1.5 * IQR(student_ratio, na.rm = TRUE)
+  )
+outliers <- df_combined %>%
+  left_join(data_summary, by = "Continent") %>%
+  filter(student_ratio < lower_bound | student_ratio > upper_bound) %>%
+  select(Continent, student_ratio)
+
+highlight_continent <- data_summary %>% 
+  arrange(-median_value) %>% 
+  slice(1) %>% 
+  pull(Continent)
+
+# Plot
+ggplot(data_summary, aes(x = Continent, y = median_value)) +
+  geom_col(aes(fill = (Continent == highlight_continent)), 
+           color = "black", width = 0.7) +  # Bar for median
+  geom_point(data = outliers, aes(x = Continent, y = student_ratio), 
+             color = "red", size = 3) +  # Points for outliers
+  coord_flip() +  # Flip axes for better readability
+  labs(title = "Median Student Ratio with Outliers by Continent",
+       x = "Continent", y = "Student Ratio") +  # Points for outliers
+  geom_text(aes(label = round(median_value, 2)), position = position_dodge(width = 0.9), hjust = -0.1, size = 3) +
+  scale_fill_manual(values = c("steelblue", "gold")) +
+  theme_minimal() +
+  theme(legend.position = "none",                               # Remove legend
+        panel.grid.major = element_blank(),                      # Remove major grid
+        panel.grid.minor = element_blank(),
+            panel.border = element_rect(colour = "black", fill=NA, size = 2))
+
+
+
+```
+Upon exploration it reveals that Africa has a pronouncedly higher median student-teacher ratio compared to other continents. But what does this signify? Essentially, this metric reflects that at least half of the African countries have a student-teacher ratio higher than the continent's median value.
+
+The golden bar in the @fig-plot3 representing Africa unmistakably stands out, emphasizing the continent's predicament. The red dots, representing outliers, further accentuate the disparity within continents, but it's Africa's column that draws immediate attention <span style="background-color: #FFFF00">followed by Europe</span>.
+
+
+### Africa's Classroom Struggle: The Student-Teacher Ratio Conundrum
+
+In the pursuit of quality education, the balance between students and teachers is critical. Despite its vast cultural heritage, Africa grapples with this balance, as evidenced by its skewed student-teacher ratios.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#| label: fig-plot4
+#| fig-cap: Top 5 Highest & Lowest Student-Teacher Ratios in Africa
+
+df_africa <- df_combined[df_combined$Continent == "Africa", ]
+
+df_africa_avg <- df_africa %>%
+  group_by(country) %>%
+  summarize(avg_ratio = mean(student_ratio, na.rm = TRUE))
+
+selected_countries_high <- df_africa_avg %>%
+  arrange(desc(avg_ratio)) %>%
+  slice(1:5) %>%
+  pull(country)
+
+selected_countries_low <- df_africa_avg %>%
+  arrange(avg_ratio) %>%
+  slice(1:5) %>%
+  pull(country)
+
+selected_countries <- c(selected_countries_high, selected_countries_low)
+
+df_africa_filtered <- df_africa[df_africa$country %in% selected_countries, ]
+
+
+ideal_ratio <- mean(df_combined$student_ratio, na.rm = TRUE)
+
+
+ggplot(df_africa_filtered, aes(x = reorder(country, -student_ratio), y = student_ratio)) +
+  geom_segment(aes(xend = country, yend = 0), color = "#E2CA76", size = 1) +
+  geom_point(aes(color = ifelse(student_ratio > ideal_ratio, "Above Average", "Below Average")), size = 3) +
+  geom_hline(yintercept = ideal_ratio, linetype = "dashed", color = "darkred", size = 1) + 
+  coord_flip() + 
+  labs(title = "Student-Teacher Ratios in Africa: Top 5 Highest & Lowest",
+       subtitle = "Red line indicates global student average ratio",
+       x = "Country", 
+       y = "Student-Teacher Ratio") +
+  theme_minimal() +
+  theme(
+    axis.line = element_line(colour = "black"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.title = element_blank(),
+    plot.background = element_rect(color = "black", size = 2, fill = NA), # This line adds the black border
+    panel.background = element_blank()
+  ) +
+  scale_color_manual(values = c("Above Average" = "darkgreen", "Below Average" = "#E2CA76")) +
+  annotate("text", label = "Avg Ratio", x = 10.5, y = ideal_ratio + 2, color = "darkred")
+
+```
+
+The visual in the @fig-plot4 above paints a compelling picture of the student-teacher ratios across African nations. Those with the most significant challenges are marked in stark green, indicating settings where educators are spread thin, potentially diluting the quality of education. On the flip side, the mustard yellow dots signify countries with slightly better ratios - but there's a catch. Even <span style="background-color: #FFFF00">these relatively "better" nations fall short of the global ideal student-teacher ratio, depicted by the dashed red line</span>.
+
+Worryingly, no African country, even those with somewhat balanced ratios within the continental context, manages to dip below this universal benchmark. This revelation underscores the endemic nature of this educational challenge within Africa.
+
+</details>
+
+
+<details open>
+<summary>Conclusion</summary>
+
+<br/>
+
+Africa's educational landscape, rich in potential, faces a pressing concern: the imbalance in student-teacher ratios. A high ratio can hint at classrooms bursting at the seams, potentially compromising the quality of instruction and learning based on research by @mohamed2020south . While some countries within the continent show promise, the overarching trend suggests an urgent need for introspection and action. Addressing this imbalance is not just about improving numbers but ensuring that each student gets the attention and resources they deserve. The journey ahead is challenging, but with concerted efforts, a balanced educational environment is within reach.
+
+</details>
+
+
+
